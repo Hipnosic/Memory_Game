@@ -11,8 +11,14 @@ function createCard(theme) {
   return card
 }
 
-function handleClick() {
-  cards.style.transform = 'rotateY(0deg)'
+function handleClick(cards) {
+  cards.classList.add('active')
+  let matcheditem = []
+  matcheditem.push(cards.innerHTML)
+  console.log(matcheditem)
+  if (matcheditem[0] == matcheditem[1]) {
+    console.log('hej')
+  }
 }
 
 function addCardImg(container) {
@@ -21,8 +27,8 @@ function addCardImg(container) {
     let random = Math.floor(Math.random() * theme.length)
     let cards = createCard(theme[random])
 
-    cards.addEventListener('click', () => {
-      cards.style.transform = 'rotateY(0deg)'
+    cards.addEventListener('click', (e) => {
+      handleClick(cards)
     })
 
     theme.splice(random, 1)
