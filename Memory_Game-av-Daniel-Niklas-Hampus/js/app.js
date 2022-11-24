@@ -11,11 +11,20 @@ function createCard(theme) {
   return card
 }
 
+function handleClick() {
+  cards.style.transform = 'rotateY(0deg)'
+}
+
 function addCardImg(container) {
   // var för funkar inte theme.length iställer för 24?
   for (let i = 0; i < 24; i++) {
     let random = Math.floor(Math.random() * theme.length)
     let cards = createCard(theme[random])
+
+    cards.addEventListener('click', () => {
+      cards.style.transform = 'rotateY(0deg)'
+    })
+
     theme.splice(random, 1)
     container.append(cards)
   }
@@ -23,14 +32,6 @@ function addCardImg(container) {
 
 function initializeCards() {
   addCardImg(cardContainer)
-}
-
-function handleClick() {
-  rotate.style.transform = 'rotateY(0deg)'
-}
-
-for (let memoryCard of memoryCards) {
-  memoryCard.addEventListener('click', handleClick)
 }
 
 initializeCards()
