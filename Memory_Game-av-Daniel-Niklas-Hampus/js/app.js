@@ -1,6 +1,8 @@
 let cardContainer = document.querySelector('.card-container')
 let startBtn = document.querySelector('.start-btn')
+let memoryCards = document.querySelectorAll('.card-container')
 let img = document.querySelector('.card-img')
+let rotate = document.querySelector('.card')
 
 function createCard(theme) {
   let card = document.createElement('figure')
@@ -21,6 +23,14 @@ function addCardImg(container) {
 
 function initializeCards() {
   addCardImg(cardContainer)
+}
+
+function handleClick() {
+  rotate.style.transform = 'rotateY(0deg)'
+}
+
+for (let memoryCard of memoryCards) {
+  memoryCard.addEventListener('click', handleClick)
 }
 
 initializeCards()
