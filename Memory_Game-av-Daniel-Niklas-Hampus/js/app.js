@@ -1,20 +1,31 @@
-let cardContainer = document.querySelector(".card-container");
+let cardContainer = document.querySelector('.card-container')
+let startBtn = document.querySelector('.start-btn')
+let img = document.querySelector('.card-img')
 
 function createCard(theme) {
-  let card = document.createElement("figure");
-  card.innerHTML = `<img src="${theme}" alt="${theme}" width = "200">`;
-  return card;
+  let card = document.createElement('figure')
+  card.innerHTML = `<img class ="card-img" src="${theme}" alt="${theme}" width = "100">`
+  card.className = 'card'
+  return card
 }
 
 function addCardImg(container) {
-  for (let themes of theme) {
-    let cards = createCard(themes);
-    container.append(cards);
+  // var för funkar inte theme.length iställer för 24?
+  for (let i = 0; i < 24; i++) {
+    let random = Math.floor(Math.random() * theme.length)
+    let cards = createCard(theme[random])
+    theme.splice(random, 1)
+    container.append(cards)
   }
 }
 
 function initializeCards() {
-  addCardImg(cardContainer);
+  addCardImg(cardContainer)
 }
 
-initializeCards();
+initializeCards()
+
+// startBtn.addEventListener('click', () => {
+//   startBtn.style.display = 'none'
+//   initializeCards()
+// })

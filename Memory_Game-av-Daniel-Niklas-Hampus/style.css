@@ -1,0 +1,13 @@
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    margin: 0 auto;
+    flex-basis: 25%;
+}
+.card{
+    border: 1px solid black;
+transform: rotateX('angle');
+}
+
+
