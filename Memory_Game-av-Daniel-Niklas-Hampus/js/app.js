@@ -2,6 +2,38 @@ let cardContainer = document.querySelector('.card-container')
 let startBtn = document.querySelector('.start-btn')
 let memoryCards = document.querySelectorAll('.card-container')
 let matchedItem = []
+let playerTurnLbl = document.querySelector('.player-turn-lbl')
+let playerOneScorePara = document.querySelector('.player-one-score')
+let playerTwoScorePara = document.querySelector('.player-two-score')
+let playerOneName = document.querySelector('.playerone-name-field').value
+let playerTwoName = document.querySelector('.playertwo-name-field').value
+
+let playerOne = {
+  name: 'Niklas',
+  score: 0,
+}
+
+playerOne.name = playerOneName
+
+let playerTwo = {
+  name: 'Daniel',
+  score: 0,
+}
+
+playerTwo.name = playerTwoName
+
+let players = [playerOne, playerTwo]
+let gameTurn = 0
+let hiddenNumber = 0
+
+console.log(playerOneName)
+
+function updateDisplay() {
+  let currentPlayer = players[gameTurn]
+  playerTurnLbl.innerText = currentPlayer.name
+  playerOneScorePara.innerText = `${players[0].name}: ${players[0].score}`
+  playerTwoScorePara.innerText = `${players[1].name}: ${players[1].score}`
+}
 
 function createCard(theme) {
   let card = document.createElement('figure')
@@ -41,10 +73,14 @@ function gameLogic(card, theme) {
   if (matchedItem[0] == matchedItem[1]) {
     setTimeout(matchedCard, 1000)
     matchedItem = []
+    let currentPlayer = players[gameTurn]
+    currentPlayer.score = currentPlayer.score + 1
   } else if (matchedItem[1]) {
     matchedItem = []
     setTimeout(flipback, 1000)
+    gameTurn = (gameTurn + 1) % 2
   }
+  updateDisplay()
 }
 
 function addCardImg(container) {
