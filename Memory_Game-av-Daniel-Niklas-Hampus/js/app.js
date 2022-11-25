@@ -22,11 +22,6 @@ function hideH3() {
 }
 hideH3()
 
-function showH3() {
-  playerTurnLbl.classList.remove('hide')
-  playerTurnH3.classList.remove('hide')
-}
-
 let playerOne = {
   name: 'Niklas',
   score: 0,
@@ -45,6 +40,8 @@ function updateDisplay() {
   playerTurnLbl.innerText = currentPlayer.name
   playerOneScorePara.innerText = `${players[0].name}: ${players[0].score}`
   playerTwoScorePara.innerText = `${players[1].name}: ${players[1].score}`
+  playerTurnLbl.classList.remove('hide')
+  playerTurnH3.classList.remove('hide')
 }
 
 function createCard(theme) {
@@ -109,7 +106,6 @@ function addCardImg(container) {
 function initializeCards() {
   addCardImg(cardContainer)
   getPlayesName()
-  showH3()
 }
 
 startBtn.addEventListener('click', () => {
