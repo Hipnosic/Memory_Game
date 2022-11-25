@@ -3,30 +3,42 @@ let startBtn = document.querySelector('.start-btn')
 let memoryCards = document.querySelectorAll('.card-container')
 let matchedItem = []
 let playerTurnLbl = document.querySelector('.player-turn-lbl')
+let playerTurnH3 = document.querySelector('.playersturn')
 let playerOneScorePara = document.querySelector('.player-one-score')
 let playerTwoScorePara = document.querySelector('.player-two-score')
-let playerOneName = document.querySelector('.playerone-name-field').value
-let playerTwoName = document.querySelector('.playertwo-name-field').value
+
+function getPlayesName() {
+  let playerOneName = document.querySelector('.playerone-name-field')
+  let playerTwoName = document.querySelector('.playertwo-name-field')
+  playerOne.name = playerOneName.value
+  playerTwo.name = playerTwoName.value
+
+  playerOneName.classList.add('hide')
+  playerTwoName.classList.add('hide')
+}
+function hideH3() {
+  playerTurnLbl.classList.add('hide')
+  playerTurnH3.classList.add('hide')
+}
+hideH3()
+
+function showH3() {
+  playerTurnLbl.classList.remove('hide')
+  playerTurnH3.classList.remove('hide')
+}
 
 let playerOne = {
   name: 'Niklas',
   score: 0,
 }
 
-playerOne.name = playerOneName
-
 let playerTwo = {
   name: 'Daniel',
   score: 0,
 }
 
-playerTwo.name = playerTwoName
-
 let players = [playerOne, playerTwo]
 let gameTurn = 0
-let hiddenNumber = 0
-
-console.log(playerOneName)
 
 function updateDisplay() {
   let currentPlayer = players[gameTurn]
@@ -74,7 +86,7 @@ function gameLogic(card, theme) {
     setTimeout(matchedCard, 1000)
     matchedItem = []
     let currentPlayer = players[gameTurn]
-    currentPlayer.score = currentPlayer.score + 1
+    currentPlayer.score++
   } else if (matchedItem[1]) {
     matchedItem = []
     setTimeout(flipback, 1000)
@@ -96,11 +108,11 @@ function addCardImg(container) {
 
 function initializeCards() {
   addCardImg(cardContainer)
+  getPlayesName()
+  showH3()
 }
 
-initializeCards()
-
-// startBtn.addEventListener('click', () => {
-//   startBtn.style.display = 'none'
-//   initializeCards()
-// })
+startBtn.addEventListener('click', () => {
+  startBtn.classList.add('hide')
+  initializeCards()
+})
