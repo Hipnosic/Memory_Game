@@ -22,6 +22,16 @@ function flipback() {
   rotate[1].classList.add('flip-back')
 }
 
+function matchedCard() {
+  let matched = document.querySelectorAll('.flip-front')
+  matched[0].classList.add('hide')
+  matched[1].classList.add('hide')
+  matched[0].classList.remove('flip-front')
+  matched[0].classList.remove('flip-back')
+  matched[1].classList.remove('flip-front')
+  matched[1].classList.remove('flip-back')
+}
+
 function gameLogic(card, theme) {
   card.classList.add('flip-front')
   card.classList.remove('flip-back')
@@ -29,11 +39,10 @@ function gameLogic(card, theme) {
   matchedItem.push(theme.alt)
   console.log(matchedItem)
   if (matchedItem[0] == matchedItem[1]) {
-    console.log('hej')
+    setTimeout(matchedCard, 1000)
     matchedItem = []
   } else if (matchedItem[1]) {
     matchedItem = []
-    console.log('nope')
     setTimeout(flipback, 1000)
   }
 }

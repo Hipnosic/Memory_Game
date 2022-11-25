@@ -19,6 +19,10 @@
    align-items: center;
 }
 
+.hide{
+    visibility:hidden;
+}
+
 .card-img{
     backface-visibility: hidden;
 }
