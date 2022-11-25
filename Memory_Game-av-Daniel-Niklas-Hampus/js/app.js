@@ -6,6 +6,7 @@ let playerTurnLbl = document.querySelector('.player-turn-lbl')
 let playerTurnH3 = document.querySelector('.playersturn')
 let playerOneScorePara = document.querySelector('.player-one-score')
 let playerTwoScorePara = document.querySelector('.player-two-score')
+let preventClick = false
 
 function getPlayesName() {
   let playerOneName = document.querySelector('.playerone-name-field')
@@ -23,12 +24,12 @@ function hideH3() {
 hideH3()
 
 let playerOne = {
-  name: 'Niklas',
+  name: '',
   score: 0,
 }
 
 let playerTwo = {
-  name: 'Daniel',
+  name: '',
   score: 0,
 }
 
@@ -49,7 +50,9 @@ function createCard(theme) {
   card.innerHTML = `<img class ="card-img" src="${theme.name}" alt="${theme.alt}" width = "100">`
   card.className = 'card'
   card.addEventListener('click', () => {
-    gameLogic(card, theme)
+    if (!card.classList.contains('flip-front') && !preventClick) {
+      gameLogic(card, theme)
+    }
   })
 
   return card
@@ -61,6 +64,7 @@ function flipback() {
   rotate[0].classList.add('flip-back')
   rotate[1].classList.remove('flip-front')
   rotate[1].classList.add('flip-back')
+  preventClick = false
 }
 
 function matchedCard() {
@@ -71,6 +75,7 @@ function matchedCard() {
   matched[0].classList.remove('flip-back')
   matched[1].classList.remove('flip-front')
   matched[1].classList.remove('flip-back')
+  preventClick = false
 }
 
 function gameLogic(card, theme) {
@@ -84,10 +89,12 @@ function gameLogic(card, theme) {
     matchedItem = []
     let currentPlayer = players[gameTurn]
     currentPlayer.score++
+    preventClick = true
   } else if (matchedItem[1]) {
     matchedItem = []
     setTimeout(flipback, 1000)
     gameTurn = (gameTurn + 1) % 2
+    preventClick = true
   }
   updateDisplay()
 }
