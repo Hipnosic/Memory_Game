@@ -3,22 +3,33 @@ let startBtn = document.querySelector('.start-btn')
 let memoryCards = document.querySelectorAll('.card-container')
 let img = document.querySelector('.card-img')
 let rotate = document.querySelector('.card')
+let matchedItem = []
+
+function gameLogic(theme) {
+  matchedItem.push(theme.alt)
+  console.log(matchedItem)
+  if (matchedItem[0] == matchedItem[1]) {
+    console.log('hej')
+  } else if (matchedItem[1]) {
+    matchedItem = []
+    console.log('nope')
+  }
+}
 
 function createCard(theme) {
   let card = document.createElement('figure')
-  card.innerHTML = `<img class ="card-img" src="${theme}" alt="${theme}" width = "100">`
+  card.innerHTML = `<img class ="card-img" src="${theme.name}" alt="${theme.alt}" width = "100">`
   card.className = 'card'
+  card.addEventListener('click', () => {
+    handleClick(card)
+    gameLogic(theme)
+  })
+
   return card
 }
 
 function handleClick(cards) {
   cards.classList.add('active')
-  let matcheditem = []
-  matcheditem.push(cards.innerHTML)
-  console.log(matcheditem)
-  if (matcheditem[0] == matcheditem[1]) {
-    console.log('hej')
-  }
 }
 
 function addCardImg(container) {
@@ -26,10 +37,6 @@ function addCardImg(container) {
   for (let i = 0; i < 24; i++) {
     let random = Math.floor(Math.random() * theme.length)
     let cards = createCard(theme[random])
-
-    cards.addEventListener('click', (e) => {
-      handleClick(cards)
-    })
 
     theme.splice(random, 1)
     container.append(cards)
