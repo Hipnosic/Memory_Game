@@ -21,12 +21,6 @@ function getPlayesName() {
   playerOneName.classList.add('display-none')
   playerTwoName.classList.add('display-none')
 }
-function hide() {
-  // playerTurnLbl.classList.add('display-none')
-  // playerTurnH3.classList.add('display-none')
-  mainContainer.classList.add('display-none')
-}
-hide()
 
 let playerOne = {
   name: 'Player One',
@@ -46,8 +40,6 @@ function updateDisplay() {
   playerTurnLbl.innerText = currentPlayer.name
   playerOneScorePara.innerText = `${players[0].name}: ${players[0].score}`
   playerTwoScorePara.innerText = `${players[1].name}: ${players[1].score}`
-  // playerTurnLbl.classList.remove('display-none')
-  // playerTurnH3.classList.remove('display-none')
   mainContainer.classList.remove('display-none')
 }
 
