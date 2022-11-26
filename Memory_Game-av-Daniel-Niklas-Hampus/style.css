@@ -35,7 +35,7 @@
 }
 
 .flip-back{
-    transform: rotateY(180deg);
+    transform: rotateY(0deg);
 }
 
 .card::after{

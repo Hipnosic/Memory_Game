@@ -6,7 +6,9 @@ let playerTurnLbl = document.querySelector('.player-turn-lbl')
 let playerTurnH3 = document.querySelector('.playersturn')
 let playerOneScorePara = document.querySelector('.player-one-score')
 let playerTwoScorePara = document.querySelector('.player-two-score')
+let historyContainer = document.querySelector('.history-container')
 let preventClick = false
+let cardCounter = theme.length - 1
 
 function getPlayesName() {
   let playerOneName = document.querySelector('.playerone-name-field')
@@ -76,20 +78,31 @@ function matchedCard() {
   matched[1].classList.remove('flip-front')
   matched[1].classList.remove('flip-back')
   preventClick = false
+  winnerChecker()
 }
 
 function winnerChecker() {
   let cardAmount = document.querySelectorAll('.hide')
-  if (cardAmount[23]) {
-    console.log('slut på kort')
+  if (cardAmount[cardCounter]) {
     if (playerOne.score < playerTwo.score) {
-      console.log('hello 1')
+      console.log(`${playerTwo.name} Won with ${playerTwo.score} points`)
     } else if (playerOne.score == playerTwo.score) {
-      console.log('hello 2')
+      console.log(
+        `DRAW ${playerOne.name} got ${playerOne.score} and ${playerTwo.name} got ${playerTwo.score}`
+      )
     } else {
-      console.log('hello 3')
+      console.log(`${playerOne.name} Won with ${playerOne.score} points`)
     }
   }
+}
+
+function historyCounter(currentPlayer) {
+  let historyPara = document.createElement('p')
+  historyPara.innerText = `${
+    currentPlayer.name
+  } fångade ${matchedItem[0].replace('.png', '')}`
+
+  historyContainer.append(historyPara)
 }
 
 function gameLogic(card, theme) {
@@ -100,13 +113,11 @@ function gameLogic(card, theme) {
   console.log(matchedItem)
   if (matchedItem[0] == matchedItem[1]) {
     setTimeout(matchedCard, 1000)
-    matchedItem = []
     let currentPlayer = players[gameTurn]
+    historyCounter(currentPlayer)
     currentPlayer.score++
+    matchedItem = []
     preventClick = true
-    console.log(playerOne.score)
-    console.log(playerTwo.score)
-    winnerChecker()
   } else if (matchedItem[1]) {
     matchedItem = []
     setTimeout(flipback, 1000)
