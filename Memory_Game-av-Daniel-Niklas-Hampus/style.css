@@ -150,7 +150,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0.6110819327731092) 0%, rgba(
     box-shadow: 0 0 15px whitesmoke;
     border-radius: 1em;
     width: 80%;
-    height: 65%;
+    /* height: 65%; */
     color: black;
 }
 .history-para{

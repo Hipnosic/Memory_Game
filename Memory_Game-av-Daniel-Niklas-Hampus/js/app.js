@@ -29,12 +29,12 @@ function hide() {
 hide()
 
 let playerOne = {
-  name: '',
+  name: 'Player One',
   score: 0,
 }
 
 let playerTwo = {
-  name: '',
+  name: 'Player Two',
   score: 0,
 }
 
@@ -104,7 +104,7 @@ function historyCounter(currentPlayer) {
   let historyPara = document.createElement('p')
   historyPara.innerText = `${
     currentPlayer.name
-  } Catched ${matchedItem[0].replace('.png', '')}`
+  } Caught ${matchedItem[0].replace('.png', '')}`
   historyPara.className = 'history-para'
 
   historyContainer.append(historyPara)
