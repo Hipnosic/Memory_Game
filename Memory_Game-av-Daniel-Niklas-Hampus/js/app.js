@@ -14,12 +14,12 @@ function getPlayesName() {
   playerOne.name = playerOneName.value
   playerTwo.name = playerTwoName.value
 
-  playerOneName.classList.add('hide')
-  playerTwoName.classList.add('hide')
+  playerOneName.classList.add('display-none')
+  playerTwoName.classList.add('display-none')
 }
 function hideH3() {
-  playerTurnLbl.classList.add('hide')
-  playerTurnH3.classList.add('hide')
+  playerTurnLbl.classList.add('display-none')
+  playerTurnH3.classList.add('display-none')
 }
 hideH3()
 
@@ -41,8 +41,8 @@ function updateDisplay() {
   playerTurnLbl.innerText = currentPlayer.name
   playerOneScorePara.innerText = `${players[0].name}: ${players[0].score}`
   playerTwoScorePara.innerText = `${players[1].name}: ${players[1].score}`
-  playerTurnLbl.classList.remove('hide')
-  playerTurnH3.classList.remove('hide')
+  playerTurnLbl.classList.remove('display-none')
+  playerTurnH3.classList.remove('display-none')
 }
 
 function createCard(theme) {
@@ -78,6 +78,20 @@ function matchedCard() {
   preventClick = false
 }
 
+function winnerChecker() {
+  let cardAmount = document.querySelectorAll('.hide')
+  if (cardAmount[23]) {
+    console.log('slut på kort')
+    if (playerOne.score < playerTwo.score) {
+      console.log('hello 1')
+    } else if (playerOne.score == playerTwo.score) {
+      console.log('hello 2')
+    } else {
+      console.log('hello 3')
+    }
+  }
+}
+
 function gameLogic(card, theme) {
   card.classList.add('flip-front')
   card.classList.remove('flip-back')
@@ -90,6 +104,9 @@ function gameLogic(card, theme) {
     let currentPlayer = players[gameTurn]
     currentPlayer.score++
     preventClick = true
+    console.log(playerOne.score)
+    console.log(playerTwo.score)
+    winnerChecker()
   } else if (matchedItem[1]) {
     matchedItem = []
     setTimeout(flipback, 1000)
@@ -116,6 +133,6 @@ function initializeCards() {
 }
 
 startBtn.addEventListener('click', () => {
-  startBtn.classList.add('hide')
+  startBtn.classList.add('display-none')
   initializeCards()
 })
