@@ -7,6 +7,7 @@ let playerTurnH3 = document.querySelector('.playersturn')
 let playerOneScorePara = document.querySelector('.player-one-score')
 let playerTwoScorePara = document.querySelector('.player-two-score')
 let historyContainer = document.querySelector('.history-container')
+let startCard = document.querySelector('.start-menu')
 let preventClick = false
 let cardCounter = theme.length - 1
 
@@ -146,6 +147,6 @@ function initializeCards() {
 }
 
 startBtn.addEventListener('click', () => {
-  startBtn.classList.add('display-none')
+  startCard.classList.add('display-none')
   initializeCards()
 })

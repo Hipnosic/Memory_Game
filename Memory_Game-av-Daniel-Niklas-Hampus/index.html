@@ -17,10 +17,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section>
-      <h3 class="playersturn">
-        player <label class="player-turn-lbl">namn_på_spelare</label>'s turn
-      </h3>
+    <section class="start-menu">
+      <h3 class="menu-header">Pokemon Memory</h3>
+      <h2 class="menu">Menu</h2>
       <input
         class="playerone-name-field"
         type="text"
@@ -31,15 +30,24 @@
         type="text"
         placeholder="Player two"
       />
+      <button class="start-btn">start</button>
     </section>
-    <section>
-      <p class="player-one-score"></p>
-      <p class="player-two-score"></p>
-    </section>
-    <section class="history-container">
-      <h3>Historik</h3>
-    </section>
-    <div class="card-container"></div>
-    <button class="start-btn">start</button>
+    <div class="main-wrapper">
+      <div class="card-container"></div>
+      <div class="side-wrapper">
+        <section>
+          <h3 class="playersturn">
+            player <label class="player-turn-lbl">namn_på_spelare</label>'s turn
+          </h3>
+        </section>
+        <div>
+          <p class="player-one-score"></p>
+          <p class="player-two-score"></p>
+        </div>
+        <section class="history-container">
+          <h3>Historik</h3>
+        </section>
+      </div>
+    </div>
   </body>
 </html>
