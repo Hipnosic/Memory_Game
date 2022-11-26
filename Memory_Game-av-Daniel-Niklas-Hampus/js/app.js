@@ -19,11 +19,12 @@ function getPlayesName() {
   playerOneName.classList.add('display-none')
   playerTwoName.classList.add('display-none')
 }
-function hideH3() {
+function hide() {
   playerTurnLbl.classList.add('display-none')
   playerTurnH3.classList.add('display-none')
+  historyContainer.classList.add('display-none')
 }
-hideH3()
+hide()
 
 let playerOne = {
   name: '',
@@ -45,6 +46,7 @@ function updateDisplay() {
   playerTwoScorePara.innerText = `${players[1].name}: ${players[1].score}`
   playerTurnLbl.classList.remove('display-none')
   playerTurnH3.classList.remove('display-none')
+  historyContainer.classList.remove('display-none')
 }
 
 function createCard(theme) {
