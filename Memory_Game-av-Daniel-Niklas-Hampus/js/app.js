@@ -22,8 +22,8 @@ function getPlayesName() {
   playerTwoName.classList.add('display-none')
 }
 function hide() {
-  playerTurnLbl.classList.add('display-none')
-  playerTurnH3.classList.add('display-none')
+  // playerTurnLbl.classList.add('display-none')
+  // playerTurnH3.classList.add('display-none')
   mainContainer.classList.add('display-none')
 }
 hide()
@@ -46,9 +46,9 @@ function updateDisplay() {
   playerTurnLbl.innerText = currentPlayer.name
   playerOneScorePara.innerText = `${players[0].name}: ${players[0].score}`
   playerTwoScorePara.innerText = `${players[1].name}: ${players[1].score}`
-  playerTurnLbl.classList.remove('display-none')
-  playerTurnH3.classList.remove('display-none')
-  sideContainer.classList.remove('display-none')
+  // playerTurnLbl.classList.remove('display-none')
+  // playerTurnH3.classList.remove('display-none')
+  mainContainer.classList.remove('display-none')
 }
 
 function createCard(theme) {
@@ -104,7 +104,7 @@ function historyCounter(currentPlayer) {
   let historyPara = document.createElement('p')
   historyPara.innerText = `${
     currentPlayer.name
-  } fångade ${matchedItem[0].replace('.png', '')}`
+  } Catched ${matchedItem[0].replace('.png', '')}`
   historyPara.className = 'history-para'
 
   historyContainer.append(historyPara)
@@ -129,7 +129,7 @@ function gameLogic(card, theme) {
     gameTurn = (gameTurn + 1) % 2
     preventClick = true
   }
-  updateDisplay()
+  setTimeout(updateDisplay, 2000)
 }
 
 function addCardImg(container) {
@@ -152,4 +152,5 @@ startBtn.addEventListener('click', () => {
   mainContainer.style.display = 'flex'
   startCard.classList.add('display-none')
   initializeCards()
+  updateDisplay()
 })
