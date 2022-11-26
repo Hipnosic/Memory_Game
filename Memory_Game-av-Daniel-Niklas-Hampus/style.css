@@ -1,5 +1,5 @@
 html body {
-background-color: #f9f9f9;
+background-color: #d6cb8a;
 }
 
 .start-menu{
@@ -16,7 +16,10 @@ background-color: #f9f9f9;
     margin-top: 10em;
     gap: 1em;
     border-radius: 1em;
+    position: relative;
 }
+
+
 
 .playerone-name-field,
 .playertwo-name-field,
@@ -37,7 +40,7 @@ padding: 0.5em;
 .menu-header,
 .menu{
     margin: 0;
-    font-size: 3em;
+    font-size: 2.5em;
     color: wheat;
 }
 
@@ -51,6 +54,9 @@ padding: 0.5em;
     flex-wrap: wrap;
     width: 40%;
     gap: 1em;
+    height: 20%;
+    margin-top: 10em;
+    margin-left: 35em;
 }
 .card{
     display: flex;
@@ -120,22 +126,50 @@ background: linear-gradient(0deg, rgba(255,255,255,0.6110819327731092) 0%, rgba(
 
 
 .main-wrapper{
-    display: flex;
-    background-color: aqua;
-    justify-content: space-evenly;
-    margin-top: 10em;
+    height: 100vh;
+    justify-content: space-between;
 }
 
+
 .side-wrapper{
+    display: none;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: rgb(255,255,255);
     background: linear-gradient(0deg, rgba(255,255,255,0.6110819327731092) 0%, rgba(0,0,0,1) 45%, rgba(255,0,0,1) 100%);
     width: 20%;
+    color: wheat;
+    border-radius: 1em;
+    box-shadow: 0 0 20px whitesmoke;
+    height: 100%;
+    margin-right:2em ;
+}
+.history-container{
+    background-color: white;
+    box-shadow: 0 0 20px whitesmoke;
+    border-radius: 1em;
+    width: 80%;
+    height: 70%;
+    color: black;
+}
+.history-para{
+    font-size: 1.2rem;
+    padding-left: 1em;
+}
+.history-h3{
+    text-align: center;
+    font-size: 2em;
+    border-bottom: 2px solid black;
 }
 
 .playersturn{
     font-size: 2em;
 }
 
+.pikachu{
+    position: absolute;
+    /* margin-top: 20em; */
+    bottom: 0;
+    left: 0;
+}

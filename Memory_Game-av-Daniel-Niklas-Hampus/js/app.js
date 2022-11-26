@@ -8,6 +8,7 @@ let playerOneScorePara = document.querySelector('.player-one-score')
 let playerTwoScorePara = document.querySelector('.player-two-score')
 let historyContainer = document.querySelector('.history-container')
 let startCard = document.querySelector('.start-menu')
+let mainContainer = document.querySelector('.main-wrapper')
 let preventClick = false
 let cardCounter = theme.length - 1
 
@@ -23,7 +24,7 @@ function getPlayesName() {
 function hide() {
   playerTurnLbl.classList.add('display-none')
   playerTurnH3.classList.add('display-none')
-  historyContainer.classList.add('display-none')
+  mainContainer.classList.add('display-none')
 }
 hide()
 
@@ -47,7 +48,7 @@ function updateDisplay() {
   playerTwoScorePara.innerText = `${players[1].name}: ${players[1].score}`
   playerTurnLbl.classList.remove('display-none')
   playerTurnH3.classList.remove('display-none')
-  historyContainer.classList.remove('display-none')
+  sideContainer.classList.remove('display-none')
 }
 
 function createCard(theme) {
@@ -104,6 +105,7 @@ function historyCounter(currentPlayer) {
   historyPara.innerText = `${
     currentPlayer.name
   } fångade ${matchedItem[0].replace('.png', '')}`
+  historyPara.className = 'history-para'
 
   historyContainer.append(historyPara)
 }
@@ -147,6 +149,7 @@ function initializeCards() {
 }
 
 startBtn.addEventListener('click', () => {
+  mainContainer.style.display = 'flex'
   startCard.classList.add('display-none')
   initializeCards()
 })
