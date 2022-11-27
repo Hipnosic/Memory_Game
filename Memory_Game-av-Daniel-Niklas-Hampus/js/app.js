@@ -9,6 +9,10 @@ let playerTwoScorePara = document.querySelector('.player-two-score')
 let historyContainer = document.querySelector('.history-container')
 let startCard = document.querySelector('.start-menu')
 let mainContainer = document.querySelector('.main-wrapper')
+let winnerName = document.querySelector('.winner-name')
+let winnerPoints = document.querySelector('.winner-points')
+let winnerContainer = document.querySelector('.winner-announcment')
+let restartBtn = document.querySelector('.restart-btn')
 let preventClick = false
 let cardCounter = theme.length - 1
 
@@ -77,17 +81,49 @@ function matchedCard() {
   winnerChecker()
 }
 
+function restart() {
+  let restartFlip = document.querySelectorAll('.flip-front')
+  let restarthidden = document.querySelectorAll('.hide')
+  let restartHistory = document.querySelectorAll('.history-para')
+
+  playerOne.score = 0
+  playerTwo.score = 0
+  gameTurn = 0
+
+  updateDisplay()
+
+  for (let restartFliped of restartFlip) {
+    restartFliped.classList.remove('flip-front')
+    restartFliped.classList.remove('flip-back')
+  }
+
+  for (let restarthide of restarthidden) {
+    restarthide.classList.remove('hide')
+  }
+
+  for (let restartHistorys of restartHistory) {
+    restartHistorys.remove()
+  }
+}
+
 function winnerChecker() {
   let cardAmount = document.querySelectorAll('.hide')
   if (cardAmount[cardCounter]) {
+    mainContainer.style.display = 'none'
+    winnerContainer.style.display = 'flex'
+    winnerContainer.classList.remove('display-none')
     if (playerOne.score < playerTwo.score) {
-      console.log(`${playerTwo.name} Won with ${playerTwo.score} points`)
+      winnerName.innerText = `${playerTwo.name} is the best trainer!`
+
+      winnerPoints.innerText = `${playerTwo.name} caught ${playerTwo.score} pokemons`
     } else if (playerOne.score == playerTwo.score) {
-      console.log(
-        `DRAW ${playerOne.name} got ${playerOne.score} and ${playerTwo.name} got ${playerTwo.score}`
-      )
+      winnerName.innerText = `${playerTwo.name} and ${playerOne.name} caught the same amount of pokemons`
+
+      winnerPoints.innerText = `${playerTwo.name} caught ${playerTwo.score} pokemons and ${playerOne.name} caught ${playerOne.score} pokemons`
     } else {
-      console.log(`${playerOne.name} Won with ${playerOne.score} points`)
+      winnerName.innerText = `${playerOne.name} is the best trainer!`
+
+      winnerPoints.innerText = `${playerOne.name} caught ${playerOne.score} pokemons`
     }
   }
 }
@@ -145,4 +181,8 @@ startBtn.addEventListener('click', () => {
   startCard.classList.add('display-none')
   initializeCards()
   updateDisplay()
+})
+
+restartBtn.addEventListener('click', () => {
+  restart()
 })
