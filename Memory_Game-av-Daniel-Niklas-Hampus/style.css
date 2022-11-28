@@ -13,7 +13,7 @@ background-color:wheat;
     width: 30%;
     height: 40em;
     margin: 0 auto;
-    /* margin-top: 10em; */
+     margin-top: 10em; 
     gap: 1em;
     border-radius: 1em;
     position: relative;
@@ -58,10 +58,10 @@ padding: 0.5em;
 .card-container{
     display: flex;
     flex-wrap: wrap;
-    width: 45%;
+    width: 40%;
     gap: 1em;
     /* margin-top: 10em; */
-    margin-left: 30em;
+    margin-left: 35em;
 } 
 .card{
     display: flex;

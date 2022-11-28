@@ -1,7 +1,7 @@
+// GATHERING HTML 
 let cardContainer = document.querySelector('.card-container')
 let startBtn = document.querySelector('.start-btn')
 let memoryCards = document.querySelectorAll('.card-container')
-let matchedItem = []
 let playerTurnLbl = document.querySelector('.player-turn-lbl')
 let playerTurnH3 = document.querySelector('.playersturn')
 let playerOneScorePara = document.querySelector('.player-one-score')
@@ -13,19 +13,8 @@ let winnerName = document.querySelector('.winner-name')
 let winnerPoints = document.querySelector('.winner-points')
 let winnerContainer = document.querySelector('.winner-announcment')
 let restartBtn = document.querySelector('.restart-btn')
-let preventClick = false
-let cardCounter = theme.length - 1
-
-function getPlayesName() {
-  let playerOneName = document.querySelector('.playerone-name-field')
-  let playerTwoName = document.querySelector('.playertwo-name-field')
-  playerOne.name = playerOneName.value
-  playerTwo.name = playerTwoName.value
-
-  playerOneName.classList.add('display-none')
-  playerTwoName.classList.add('display-none')
-}
-
+//-----------------------------------------------------------------------
+//OBJECTS
 let playerOne = {
   name: 'Player One',
   score: 0,
@@ -35,11 +24,27 @@ let playerTwo = {
   name: 'Player Two',
   score: 0,
 }
+//-----------------------------------------------------------------------
+//VARIABLES
 
+let preventClick = false
+let cardCounter = theme.length - 1
+let matchedItem = []
 let players = [playerOne, playerTwo]
 let gameTurn = 0
+//-----------------------------------------------------------------------
 
-function updateDisplay() {
+function getPlayesName() { // FETCHING THE PLAYERS USERNAME-INPUT INTO OBJECT
+  let playerOneName = document.querySelector('.playerone-name-field')
+  let playerTwoName = document.querySelector('.playertwo-name-field')
+  playerOne.name = playerOneName.value
+  playerTwo.name = playerTwoName.value
+
+  playerOneName.classList.add('display-none')
+  playerTwoName.classList.add('display-none')
+}
+
+function updateDisplay() { // DISPLAYS THE CURRENT PLAYER AND THEIR SCORE
   let currentPlayer = players[gameTurn]
   playerTurnLbl.innerText = currentPlayer.name
   playerOneScorePara.innerText = `${players[0].name}: ${players[0].score}`
@@ -47,20 +52,20 @@ function updateDisplay() {
   mainContainer.classList.remove('display-none')
 }
 
-function createCard(theme) {
+function createCard(theme) { // CREATES A TEMPLATE FOR EACH CARD 
   let card = document.createElement('figure')
   card.innerHTML = `<img class ="card-img" src="${theme.name}" alt="${theme.alt}" width = "100">`
   card.className = 'card'
-  card.addEventListener('click', () => {
+  card.addEventListener('click', () => { // MAKES THE CARDS CLICKABLE WITH AN ANTI SPAM 
     if (!card.classList.contains('flip-front') && !preventClick) {
       gameLogic(card, theme)
     }
   })
 
-  return card
+  return card 
 }
 
-function flipback() {
+function flipback() { // FLIPS THE CARDS AND THEN FLIPS IT BACK
   let rotate = document.querySelectorAll('.flip-front')
   rotate[0].classList.remove('flip-front')
   rotate[0].classList.add('flip-back')
@@ -69,7 +74,7 @@ function flipback() {
   preventClick = false
 }
 
-function matchedCard() {
+function matchedCard() { // AFTER THE CARDS MATCHES THEY HIDE THE CARDS
   let matched = document.querySelectorAll('.flip-front')
   matched[0].classList.add('hide')
   matched[1].classList.add('hide')
@@ -81,7 +86,7 @@ function matchedCard() {
   winnerChecker()
 }
 
-function restart() {
+function restart() {  // RESTARTS THE GAME (DOES NOT RESHUFFLE THE CARDS)
   let restartFlip = document.querySelectorAll('.flip-front')
   let restarthidden = document.querySelectorAll('.hide')
   let restartHistory = document.querySelectorAll('.history-para')
@@ -106,7 +111,7 @@ function restart() {
   }
 }
 
-function winnerChecker() {
+function winnerChecker() { // CHECKS IF ALL THE CARDS ARE HIDDEN THEN DISPLAYS THE WINNER OR IF THEY DREW
   let cardAmount = document.querySelectorAll('.hide')
   if (cardAmount[cardCounter]) {
     mainContainer.style.display = 'none'
@@ -128,7 +133,7 @@ function winnerChecker() {
   }
 }
 
-function historyCounter(currentPlayer) {
+function historyCounter(currentPlayer) {  // DISPLAYS HISTORY OF WHAT POKEMON THE PLAYER CAUGHT!
   let historyPara = document.createElement('p')
   historyPara.innerText = `${
     currentPlayer.name
@@ -138,7 +143,7 @@ function historyCounter(currentPlayer) {
   historyContainer.append(historyPara)
 }
 
-function gameLogic(card, theme) {
+function gameLogic(card, theme) { // THE RULES OF THE GAME,
   card.classList.add('flip-front')
   card.classList.remove('flip-back')
 
@@ -160,7 +165,7 @@ function gameLogic(card, theme) {
   setTimeout(updateDisplay, 2000)
 }
 
-function addCardImg(container) {
+function addCardImg(container) { // CREATES EACH CARDS FROM THE THEME-OBJECT. ADDING TO HTML.
   let totalAmount = theme.length
   for (let i = 0; i < totalAmount; i++) {
     let random = Math.floor(Math.random() * theme.length)
@@ -171,18 +176,20 @@ function addCardImg(container) {
   }
 }
 
-function initializeCards() {
+function initializeCards() {  // PLACES THE CARD ON THE BOARD
   addCardImg(cardContainer)
   getPlayesName()
 }
+//-----------------------------------------------------------------------
+// BUTTON FUNCTIONS 
 
-startBtn.addEventListener('click', () => {
+startBtn.addEventListener('click', () => { // STARTS THE GAME
   mainContainer.style.display = 'flex'
   startCard.classList.add('display-none')
   initializeCards()
   updateDisplay()
 })
 
-restartBtn.addEventListener('click', () => {
+restartBtn.addEventListener('click', () => { //RESETS THE GAME
   restart()
 })
